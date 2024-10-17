@@ -3,14 +3,15 @@ services:
     build:
       context: ./client/
       dockerfile: ${DOCKERFILE}  
-      args:
-        NODE_ENV: ${ENV}
     ports:
-      - "3000:80"  # Adjust this for production if needed
+      - "3000:3000"  # 80
+    volumes:
+      - ./client:/client # mount hele lortet
     environment:
-      - NODE_ENV=${NODE_ENV}
-    env_file:
-      - .env
+      - CHOKIDAR_USEPOLLING=true 
+      - WATCHPACK_POLLING=true 
+      - FAST_REFRESH=false
+      - WDS_SOCKET_PORT=3000 #something hto reload
 
   server:
     build:
@@ -18,7 +19,5 @@ services:
       dockerfile: ${DOCKERFILE}
     ports: 
       - "4000:4000"
-    environment:
-      - NODE_ENV=${NODE_ENV}
     env_file:
       - .env
