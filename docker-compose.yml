@@ -1,0 +1,24 @@
+services:
+  client:
+    build:
+      context: ./client/
+      dockerfile: ${DOCKERFILE}  
+      args:
+        NODE_ENV: ${ENV}
+    ports:
+      - "3000:80"  # Adjust this for production if needed
+    environment:
+      - NODE_ENV=${NODE_ENV}
+    env_file:
+      - .env
+
+  server:
+    build:
+      context: ./server/
+      dockerfile: ${DOCKERFILE}
+    ports: 
+      - "4000:4000"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+    env_file:
+      - .env
