@@ -2,3 +2,6 @@
   path = server
   url = https://github.com/Frederikmahipal/ba_server
   branch = dev
+[submodule "client"]
+	path = client
+	url = https://github.com/Frederikmahipal/ba_client
