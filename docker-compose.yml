@@ -4,14 +4,9 @@ services:
       context: ./client/
       dockerfile: ${DOCKERFILE}  
     ports:
-      - "3000:3000"  # 80
+      - "5173:5173"  
     volumes:
-      - ./client:/client # mount hele lortet
-    environment:
-      - CHOKIDAR_USEPOLLING=true 
-      - WATCHPACK_POLLING=true 
-      - FAST_REFRESH=false
-      - WDS_SOCKET_PORT=3000 #something hto reload
+      - ./client:/client 
 
   server:
     build:
@@ -21,3 +16,6 @@ services:
       - "4000:4000"
     env_file:
       - .env
+
+
+      
