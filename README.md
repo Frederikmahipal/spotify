@@ -12,3 +12,4 @@
 ```
 git clone --recurse-submodules https://github.com/Frederikmahipal/spotify
 ```
+### Requires Spotify premium account to be used
