@@ -8,3 +8,7 @@
 * MongoDB
   
 
+### To clone this project and the submodules use following command
+```
+git clone --recurse-submodules https://github.com/Frederikmahipal/spotify
+```
