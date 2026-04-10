@@ -3,19 +3,38 @@ services:
     build:
       context: ./client/
       dockerfile: ${DOCKERFILE}  
+    environment:
+      VITE_PROXY_TARGET: http://server:4000
     ports:
       - "5173:5173"  
     volumes:
-      - ./client:/client 
+      - ./client:/app
+      - /app/node_modules
+    depends_on:
+      - server
 
   server:
     build:
       context: ./server/
       dockerfile: ${DOCKERFILE}
+    environment:
+      MONGO_URI: mongodb://mongo:27017/spotify
     ports: 
       - "4000:4000"
     env_file:
       - .env
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
 
 
       
